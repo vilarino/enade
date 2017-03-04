@@ -1,0 +1,28 @@
+<Schema name="New Schema1">
+  <Cube name="DESEMPENHO REGIAO" visible="true" cache="true" enabled="true">
+    <Table name="FATO_DESENPENHO">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_dim_regiao" highCardinality="false" name="Regiao">
+      <Hierarchy visible="true" hasAll="true" primaryKey="id">
+        <Table name="DIM_REGIAO">
+        </Table>
+        <Level name="Regiao" visible="true" column="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_dim_nota" highCardinality="false" name="Nota">
+      <Hierarchy visible="true" hasAll="true" primaryKey="id">
+        <Table name="DIM_NOTA">
+        </Table>
+        <Level name="Nota" visible="true" column="valor" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Quantidade" column="id" datatype="Numeric" aggregator="count" visible="true">
+    </Measure>
+    <Measure name="Nota" column="nota" datatype="Numeric" aggregator="sum" description="Todas as notas" visible="true">
+    </Measure>
+    <CalculatedMember name="M&#233;dia" formula="[Measures].Nota/[Measures].Quantidade" dimension="Measures" visible="true">
+    </CalculatedMember>
+  </Cube>
+</Schema>
