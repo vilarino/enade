@@ -1,0 +1,6 @@
+/.idea
+composer.lock
+vendor
+web/files/*
+var/*
+config/parameters.yml
