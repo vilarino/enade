@@ -9,7 +9,17 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 //Request::setTrustedProxies(array('127.0.0.1'));
 
 $app->get('/', function () use ($app) {
-    return $app['twig']->render('index.html.twig', array());
+//    return $app['twig']->render('index.html.twig', array());
+
+    $a = new \Controller\Import($app);
+    $msg = $a->importCategories();
+
+    /*$msg = $a->importCities();*/
+    /*$msg = $a->importCountry();*/
+
+    var_dump($msg);
+    exit;
+
 })->bind('homepage');
 
 $app->get('/import', function () use ($app) {
@@ -21,15 +31,15 @@ $app->get('/import', function () use ($app) {
 
 $app->get('/load', function () use ($app) {
     $message = $app['load.controller']->run();
+    var_dump($message); exit;
 })->bind('load');
 
 $app->get('/region', function () use ($app) {
-    $sql = "SELECT * FROM DIM_REGIAO";
+    /*$sql = "SELECT * FROM DIM_REGIAO";
     $items = $app['dbs']['enade_dw']->fetchAll($sql);
     var_dump($items);
-    exit;
-
-})->bind('load');
+    exit;*/
+})->bind('region');
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {

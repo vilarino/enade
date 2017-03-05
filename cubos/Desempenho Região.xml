@@ -1,6 +1,6 @@
 <Schema name="New Schema1">
   <Cube name="DESEMPENHO REGIAO" visible="true" cache="true" enabled="true">
-    <Table name="FATO_DESENPENHO">
+    <Table name="FATO_DESEMPENHO">
     </Table>
     <Dimension type="StandardDimension" visible="true" foreignKey="id_dim_regiao" highCardinality="false" name="Regiao">
       <Hierarchy visible="true" hasAll="true" primaryKey="id">
@@ -15,6 +15,22 @@
         <Table name="DIM_NOTA">
         </Table>
         <Level name="Nota" visible="true" column="valor" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_dim_estado" highCardinality="false" name="Estado">
+      <Hierarchy visible="true" hasAll="true" primaryKey="id">
+        <Table name="DIM_ESTADO">
+        </Table>
+        <Level name="Nome" visible="true" column="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_dim_municipio" name="Municipio">
+      <Hierarchy visible="true" hasAll="true" primaryKey="id">
+        <Table name="DIM_MUNICIPIO" alias="">
+        </Table>
+        <Level name="Nome" visible="true" table="DIM_MUNICIPIO" column="nome" uniqueMembers="false" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>

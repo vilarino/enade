@@ -17,8 +17,11 @@ class Load
     {
         $this->app = $app;
         $this->colunsImport = array(
-            'nt_ce',
-            'co_regiao_curso'
+            'nt_ce', // nota da prova
+            'co_regiao_curso', // região
+            'co_uf_curso', // estado
+            'co_munic_curso', // cidade
+            'co_grupo' // curso
         );
 
         set_time_limit(960);
@@ -74,12 +77,15 @@ class Load
 
             $id = $this->app['dbs']['enade_dw']->lastInsertId();
 
-            $qb->insert('FATO_DESENPENHO')
+            $qb->insert('FATO_DESEMPENHO')
                 ->values(
                     array(
                         'id_dim_nota' => $id,
                         'id_dim_regiao' => $item['co_regiao_curso'],
-                        'nota' => empty($item['nt_ce']) ? 0 : $item['nt_ce']
+                        'nota' => empty($item['nt_ce']) ? 0 : $item['nt_ce'],
+                        'id_dim_estado' => $item['co_uf_curso'],
+                        'id_dim_municipio' => $item['co_munic_curso'],
+                        'id_dim_curso' => $item['co_grupo']
                     )
                 );
 

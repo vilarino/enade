@@ -15,12 +15,14 @@ class ImportManager
 {
     private $app;
     private $csv;
+    private $xls;
 
 
     public function __construct($app)
     {
         $this->app = $app;
         $this->csv = new CSV();
+        $this->xls = new XLS();
 
         set_time_limit(480);
     }
@@ -97,7 +99,6 @@ class ImportManager
 
     public function importCategory()
     {
-        $file = fopen('/home/rafael/Projetos/enade/web/files/Dicionário de Variáveis.xls', 'r');
-
+        //$file = fopen('/home/rafael/Projetos/enade/web/files/Dicionário de Variáveis.xls', 'r');
     }
 }
